@@ -7,7 +7,7 @@ const HeroSection = () => {
             <p>ছোট্ট সোনামণিদের বর্ণমালা ও ভাষা শেখা হোক আরও সহজ আর আনন্দের! ‘লেখাপড়া’র সাহায্যে শিক্ষক ও অভিভাবকেরা এখন মাত্র কয়েক মিনিটে প্রি-কেজি এবং কিন্ডারগার্টেনের বাচ্চাদের জন্য দারুণ সব কাস্টম বাংলা ওয়ার্কশিট তৈরি করতে পারবেন, একদম তাদের মনের মতো করে।</p>
         </div>
         <div className="hero-banner flex-1 hidden justify-center md:block">
-            <img src="https://placehold.co/600x400" alt="" srcset="" />
+            <img src="https://placehold.co/600x400" alt="" />
         </div>
     </div>
   )
