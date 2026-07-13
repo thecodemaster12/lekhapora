@@ -3,10 +3,19 @@ import { pdf } from "@react-pdf/renderer";
 import WorksheetPDF from "../components/WorksheetPDF";
 
 const AdditionPage = () => {
-    const openPDF = async () => {
+const openPDF = async () => {
+
+    const bengaliWorksheet = worksheet.map(problem => ({
+        ...problem,
+        numbers: problem.numbers.map(num => toBengaliNumber(num)),
+        answer: toBengaliNumber(problem.answer)
+    }));
 
     const blob = await pdf(
-        <WorksheetPDF worksheet={worksheet} />
+        <WorksheetPDF
+            worksheet={bengaliWorksheet}
+            showAnswer={showWorkSheetAnswer}
+        />
     ).toBlob();
 
     const url = URL.createObjectURL(blob);
@@ -28,7 +37,7 @@ const AdditionPage = () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-        const toBengaliNumber = (num) => {
+    const toBengaliNumber = (num) => {
         const englishToBengaliMap = {
             '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪',
             '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'
@@ -51,36 +60,13 @@ const AdditionPage = () => {
         const numbers = [];
 
             for (let i = 0; i < operands; i++) {
-                numbers.push(toBengaliNumber(getRandomByDigits(numOfDigits)));
+                numbers.push(getRandomByDigits(numOfDigits));
             }
-        switch (operation) {
-            case 'addition':
-                return {
-                    numbers: numbers,
-                    operator:"+",
-                    answer:numbers.reduce((sum, n) => sum + n, 0)
-                }
-            case 'subtraction':
-                return {
-                    numbers: numbers,
-                    operator:"-",
-                    answer:numbers.slice(1).reduce(
-                        (total, n) => total - n,
-                        numbers[0]
-                    )
-                }
-            case 'multiplication':
-                return {
-                    numbers: numbers,
-                    operator:"*",
-                    answer: numbers.reduce((total, n) => total * n, 1)
-                }
-            case 'division':
-                return {
-                    numbers: numbers,
-                    operator:"/",
-                    answer:numbers.reduce((sum, n) => sum + n, 0)
-                }
+        const answer = numbers.reduce((sum, n) => sum + n, 0)
+        return {
+            numbers: numbers,
+            operator:"+",
+            answer: answer
         }
     }
 
