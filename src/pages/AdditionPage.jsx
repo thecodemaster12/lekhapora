@@ -11,9 +11,11 @@ const openPDF = async () => {
         answer: toBengaliNumber(problem.answer)
     }));
 
+    const finalWorkSheet = language === 'bengali' ? bengaliWorksheet : worksheet
+
     const blob = await pdf(
         <WorksheetPDF
-            worksheet={bengaliWorksheet}
+            worksheet={finalWorkSheet}
             showAnswer={showWorkSheetAnswer}
         />
     ).toBlob();
@@ -25,6 +27,8 @@ const openPDF = async () => {
 
     const [operation, setOperation] = useState('addition');
     const [difficulty, setDifficulty] = useState(1);
+    const [language, setLanguage] = useState('bengali');
+    const [showPdfButton, setShowPdfButton] = useState(false);
 
     const [numOfDigits, setNumOfDigits] = useState(1)
     const [numOfPages, setNumOfPages] = useState(2)
@@ -76,7 +80,14 @@ const openPDF = async () => {
             problems.push(generateProblem())
            }
        setWorksheet(problems)
+       setShowPdfButton(true)
     }
+
+    const formatNumber = (num) => {
+    return language === "bengali"
+        ? toBengaliNumber(num)
+        : num;
+};
 
     
   return (
@@ -86,36 +97,28 @@ const openPDF = async () => {
             <p className="section-intro">Math worksheet generator</p>
         </div>
 
-        <div className="">
-            <h4 className="text-xl font-bold text-primary mb-4">Chose operation type</h4>
-            <div className="operation-type-container">
-                <div className="operation-type-item">
-                    <input name="operation-type" type="radio" className="operation-type-checkbox active"/>
-                    <label htmlFor="">Addition</label>
-                    <div className="operation-icon">+</div>
-                </div>
-            </div>
-        </div>
-
         <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
                 <label>Number of digits</label>
                 <input className="math-input" type="text" value={numOfDigits} onChange={(e) => setNumOfDigits(e.target.value)} name="" id="" />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
                 <label>Total Problems</label>
                 <input className="math-input" type="text" value={numOfProblems} onChange={(e) => setNumOfProblems(e.target.value)} name="" id="" />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
                 <label>Number of Operand</label>
                 <input className="math-input" type="text" value={operands} onChange={ (e) => setOperands(e.target.value)} name="" id="" />
             </div>
-            <div className="flex flex-col">
-                <label>Difficulty Level</label>
-                <select onChange={(e) => setDifficulty(e.target.value)} name="" id="">
-                    <option selected value="1">Easy</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Hard</option>
+            <div className="flex flex-col gap-2">
+                <label>Language</label>
+                <select
+                    className="math-input"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                >
+                    <option value="english">English</option>
+                    <option value="bengali">বাংলা</option>
                 </select>
             </div>
             <div className="flex gap-2 items-center">
@@ -124,35 +127,38 @@ const openPDF = async () => {
             </div>
 
         </div>
-        <button onClick={generateWorksheet} className="mt-4 px-6 py-2 rounded-2xl inline-block bg-indigo-300">Generate worksheet</button>
-        <button onClick={openPDF}>
-    Preview PDF
-</button>
+        <div className="flex gap-2">
+
+            <button onClick={generateWorksheet} className="mt-4 px-6 py-2 rounded-2xl inline-block bg-indigo-300">Generate worksheet</button>
+            <button className={`mt-4 px-6 py-2 rounded-2xl bg-indigo-300 ${showPdfButton ? "block" : "hidden"}`} onClick={openPDF}>
+                Preview PDF
+            </button>
+        </div>
 
         <div className="output space-y-3 mt-10  grid grid-cols-5 gap-4 font-bangla">
-    {worksheet.map((problem, index) => (
-        <div
-            key={index}
-            className="text-2xl font-mono"
-        >
-            <div className="">
-                <div className="inline-block border-b">
-                    {problem.numbers.map((num, i) => (
-                        <p className="font-bangla" key={i}>
-                            {i === problem.numbers.length - 1 ?
-                                ` ${problem.operator}` :  ` \u00A0`}
-                            {toBengaliNumber(num)}
-                        </p>
-                    ))}
-                </div>
+            {worksheet.map((problem, index) => (
+                <div
+                    key={index}
+                    className="text-2xl font-mono"
+                >
+                    <div className="">
+                        <div className="inline-block border-b">
+                            {problem.numbers.map((num, i) => (
+                                <p className="font-bangla" key={i}>
+                                    {i === problem.numbers.length - 1 ?
+                                        ` ${problem.operator}` :  ` \u00A0`}
+                                    {formatNumber(num)}
+                                </p>
+                            ))}
+                        </div>
 
-                <div className="font-bangla">
-                    {showWorkSheetAnswer && toBengaliNumber(problem.answer)}
+                        <div className="font-bangla">
+                            {showWorkSheetAnswer && formatNumber(problem.answer)}
+                        </div>
+                    </div>
                 </div>
-            </div>
+            ))}
         </div>
-    ))}
-</div>
     </div>
   )
 }

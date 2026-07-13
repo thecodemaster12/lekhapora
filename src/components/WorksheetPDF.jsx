@@ -55,9 +55,11 @@ const styles = StyleSheet.create({
 
     line: {
         width: "100%",
-        borderBottom: 1,
-        marginTop: 3,
-        marginBottom: 3,
+        borderTopWidth: 1.5,       // দাগের পুরুত্ব (একটু চওড়া করতে ১.৫ বা ২ দিতে পারেন)
+        borderTopColor: "black",   // দাগের রঙ
+        borderTopStyle: "solid",   // এটি দেওয়া বাধ্যতামূলক
+        marginTop: 5,
+        marginBottom: 5,
     },
 
     answer: {

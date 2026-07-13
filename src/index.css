@@ -10,6 +10,18 @@
   --font-bangla: 'Noto Sans Bengali', sans-serif;
 }
 
+.btn {
+  @apply px-6 py-2 rounded-md inline-block cursor-pointer;
+}
+
+.btn.primary {
+  @apply bg-indigo-300 text-white;
+}
+
+.btn.outline {
+  @apply border-indigo-400 border outline-none text-black;
+}
+
 .section-title {
   @apply text-center text-3xl text-primary font-bold;
 }
