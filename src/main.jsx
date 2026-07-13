@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
 import MathPage from './pages/MathPage.jsx'
 import MainLayout from './layouts/MainLayout.jsx'
+import AdditionPage from './pages/AdditionPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/math',
         element: <MathPage />,
+      },
+      {
+        path: '/math/addition',
+        element: <AdditionPage />,
       },
     ],
   },

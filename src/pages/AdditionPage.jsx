@@ -1,8 +1,9 @@
 import { useState } from "react"
 
-const MathPage = () => {
+const AdditionPage = () => {
 
     const [operation, setOperation] = useState('addition');
+    const [difficulty, setDifficulty] = useState(1);
 
     const [numOfDigits, setNumOfDigits] = useState(1)
     const [numOfPages, setNumOfPages] = useState(2)
@@ -13,6 +14,14 @@ const MathPage = () => {
 
      const generateRandom = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+        const toBengaliNumber = (num) => {
+        const englishToBengaliMap = {
+            '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪',
+            '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'
+        };
+        return String(num).replace(/[0-9]/g, (digit) => englishToBengaliMap[digit]);
     };
 
     const getRandomByDigits = (digits) => {
@@ -83,24 +92,9 @@ const MathPage = () => {
             <h4 className="text-xl font-bold text-primary mb-4">Chose operation type</h4>
             <div className="operation-type-container">
                 <div className="operation-type-item">
-                    <input onClick={() => setOperation('addition')} name="operation-type" type="radio" className={`operation-type-checkbox ${operation === 'addition' ? 'active' : ''}`} value="addition" id="" />
+                    <input name="operation-type" type="radio" className="operation-type-checkbox active"/>
                     <label htmlFor="">Addition</label>
                     <div className="operation-icon">+</div>
-                </div>
-                <div className="operation-type-item">
-                    <input onClick={() => setOperation('subtraction')} name="operation-type" type="radio" className={`operation-type-checkbox ${operation === 'subtraction' ? 'active' : ''}`} value="subtraction" id="" />
-                    <label htmlFor="">Subtraction</label>
-                    <div className="operation-icon">-</div>
-                </div>
-                <div className="operation-type-item">
-                    <input onClick={() => setOperation('multiplication')} name="operation-type" type="radio" className={`operation-type-checkbox ${operation === 'multiplication' ? 'active' : ''}`} value="multiplication" id="" />
-                    <label htmlFor="">Multiplication</label>
-                    <div className="operation-icon">x</div>
-                </div>
-                <div className="operation-type-item">
-                    <input onClick={() => setOperation('division')} name="operation-type" type="radio" className={`operation-type-checkbox ${operation === 'division' ? 'active' : ''}`} value="division" id="" />
-                    <label htmlFor="">Division</label>
-                    <div className="operation-icon">÷</div>
                 </div>
             </div>
         </div>
@@ -118,13 +112,22 @@ const MathPage = () => {
                 <label>Number of Operand</label>
                 <input className="math-input" type="text" value={operands} onChange={ (e) => setOperands(e.target.value)} name="" id="" />
             </div>
+            <div className="flex flex-col">
+                <label>Difficulty Level</label>
+                <select onChange={(e) => setDifficulty(e.target.value)} name="" id="">
+                    <option selected value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+            </div>
             <div className="flex gap-2 items-center">
-                <input onChange={(e) => setShowWorkSheetAnswer(e.target.checked)} type="checkbox" name="" id="" />
-                <label htmlFor="">Include Answer</label>
+                <input onChange={(e) => setShowWorkSheetAnswer(e.target.checked)} type="checkbox" name="" id="show-worksheet-answer" />
+                <label htmlFor="show-worksheet-answer">Include Answer</label>
             </div>
 
         </div>
         <button onClick={generateWorksheet} className="mt-4 px-6 py-2 rounded-2xl inline-block bg-indigo-300">Generate worksheet</button>
+        {difficulty}
 
         <div className="output space-y-3 mt-10  grid grid-cols-5 gap-4 font-bangla">
     {worksheet.map((problem, index) => (
@@ -138,13 +141,13 @@ const MathPage = () => {
                         <p className="font-bangla" key={i}>
                             {i === problem.numbers.length - 1 ?
                                 ` ${problem.operator}` :  ` \u00A0`}
-                            {num}
+                            {toBengaliNumber(num)}
                         </p>
                     ))}
                 </div>
 
                 <div className="font-bangla">
-                    {showWorkSheetAnswer && problem.answer}
+                    {showWorkSheetAnswer && toBengaliNumber(problem.answer)}
                 </div>
             </div>
         </div>
@@ -154,4 +157,4 @@ const MathPage = () => {
   )
 }
 
-export default MathPage
+export default AdditionPage

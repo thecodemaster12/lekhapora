@@ -1,12 +1,13 @@
-@import 'tailwindcss';
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
+@import 'tailwindcss';
 
 @theme {
   --color-primary: #1B365D;
   --color-secondary: #2D6A4F;
   --color-tertiary: #F4F7F5;
   --color-natural: #4A5568;
+
+  --font-bangla: 'Noto Sans Bengali', sans-serif;
 }
 
 .section-title {
