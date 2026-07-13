@@ -1,6 +1,18 @@
 import { useState } from "react"
+import { pdf } from "@react-pdf/renderer";
+import WorksheetPDF from "../components/WorksheetPDF";
 
 const AdditionPage = () => {
+    const openPDF = async () => {
+
+    const blob = await pdf(
+        <WorksheetPDF worksheet={worksheet} />
+    ).toBlob();
+
+    const url = URL.createObjectURL(blob);
+
+    window.open(url, "_blank");
+};
 
     const [operation, setOperation] = useState('addition');
     const [difficulty, setDifficulty] = useState(1);
@@ -39,7 +51,7 @@ const AdditionPage = () => {
         const numbers = [];
 
             for (let i = 0; i < operands; i++) {
-                numbers.push(getRandomByDigits(numOfDigits));
+                numbers.push(toBengaliNumber(getRandomByDigits(numOfDigits)));
             }
         switch (operation) {
             case 'addition':
@@ -127,7 +139,9 @@ const AdditionPage = () => {
 
         </div>
         <button onClick={generateWorksheet} className="mt-4 px-6 py-2 rounded-2xl inline-block bg-indigo-300">Generate worksheet</button>
-        {difficulty}
+        <button onClick={openPDF}>
+    Preview PDF
+</button>
 
         <div className="output space-y-3 mt-10  grid grid-cols-5 gap-4 font-bangla">
     {worksheet.map((problem, index) => (
