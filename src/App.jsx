@@ -1,4 +1,5 @@
 import HeroSection from "./components/HeroSection"
+import OptionGrid from "./components/OptionGrid"
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       </header>
       <main className="flex-1">
         <HeroSection />
+        <OptionGrid />
       </main>
       <footer>Footer</footer>
     </div>
