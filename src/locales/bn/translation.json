@@ -1,0 +1,17 @@
+{
+    "homepage-title": "গণিত ওয়ার্কশিট জেনারেটর",
+    "title": "গণিত ওয়ার্কশিট জেনারেটর",
+    "subtitle": "প্রিন্টযোগ্য গণিত ওয়ার্কশিট তৈরি করুন",
+    "addition": "যোগ",
+    "subtraction": "বিয়োগ",
+    "multiplication": "গুণ",
+    "division": "ভাগ",
+    "digits": "সংখ্যার অঙ্ক",
+    "problems": "মোট সমস্যা",
+    "operands": "অপারেন্ডের সংখ্যা",
+    "difficulty": "কঠিনতার স্তর",
+    "language": "ভাষা",
+    "includeAnswers": "উত্তর দেখান",
+    "generate": "ওয়ার্কশিট তৈরি করুন",
+    "preview": "পিডিএফ দেখুন"
+}

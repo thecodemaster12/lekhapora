@@ -1,0 +1,16 @@
+{
+    "homepage-title": "Math Worksheet Generator",
+    "subtitle": "Generate printable math worksheets",
+    "addition": "Addition",
+    "subtraction": "Subtraction",
+    "multiplication": "Multiplication",
+    "division": "Division",
+    "digits": "Number of digits",
+    "problems": "Total Problems",
+    "operands": "Number of Operands",
+    "difficulty": "Difficulty",
+    "language": "Language",
+    "includeAnswers": "Include Answers",
+    "generate": "Generate Worksheet",
+    "preview": "Preview PDF"
+}

@@ -6,6 +6,7 @@ import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
 import MathPage from './pages/MathPage.jsx'
 import MainLayout from './layouts/MainLayout.jsx'
 import AdditionPage from './pages/AdditionPage.jsx'
+import './i18n'
 
 const router = createBrowserRouter([
   {

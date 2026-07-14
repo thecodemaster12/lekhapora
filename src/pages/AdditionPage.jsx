@@ -135,7 +135,7 @@ const openPDF = async () => {
             </button>
         </div>
 
-        <div className="output space-y-3 mt-10  grid grid-cols-5 gap-4 font-bangla">
+        <div className={`output space-y-3 mt-10  grid grid-cols-5 gap-4`}>
             {worksheet.map((problem, index) => (
                 <div
                     key={index}
@@ -144,7 +144,7 @@ const openPDF = async () => {
                     <div className="">
                         <div className="inline-block border-b">
                             {problem.numbers.map((num, i) => (
-                                <p className="font-bangla" key={i}>
+                                <p className={`${language === 'bangla' ? 'font-bangla' : '' }`} key={i}>
                                     {i === problem.numbers.length - 1 ?
                                         ` ${problem.operator}` :  ` \u00A0`}
                                     {formatNumber(num)}
