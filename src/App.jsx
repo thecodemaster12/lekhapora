@@ -3,7 +3,7 @@ import OptionGrid from "./components/OptionGrid"
 
 const App = () => {
   return (
-    <div className="">
+    <div className="max-w-6xl mx-auto">
       <HeroSection />
       <OptionGrid />
     </div>

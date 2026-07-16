@@ -1,5 +1,9 @@
 {
-    "homepage-title": "Math Worksheet Generator",
+    "hero-subtitle": "Tool for Teachers & Parents",
+    "hero-title": "Worksheet Generator",
+    "hero-intro": "Create printable, customized worksheets in seconds. Perfect for teachers and parents to help children learn through fun and engaging practice. Choose the language, difficulty, and worksheet type—all completely free.",
+    "grid-title": "Choose a Worksheet Type",
+    "grid-intro": "Select the type of worksheet you'd like to generate. From basic addition and subtraction to multiplication, division, and more, you can create customized practice sheets tailored to your child's learning level—all ready to print in seconds.",
     "subtitle": "Generate printable math worksheets",
     "addition": "Addition",
     "subtraction": "Subtraction",
